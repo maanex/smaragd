@@ -1,6 +1,21 @@
 {
   "name": "smaragd",
+  "type": "module",
   "version": "0.0.1",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "./nuxt.config.ts",
+  "author": "Andreas May (maanex.me)",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "3.0.0"
+  },
+  "dependencies": {
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0"
+  }
 }
