@@ -39,8 +39,7 @@ defineProps({
   box-sizing: border-box;
 
   &[data-name="padded"] {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr;
     padding: var(--space);
   }
 
