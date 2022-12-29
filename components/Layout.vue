@@ -12,7 +12,7 @@
 defineProps({
   name: {
     type: String,
-    default: 'padded'
+    default: 'flow'
   },
   /**
    * Allowed options are:
@@ -32,6 +32,7 @@ defineProps({
   &[data-spacing="regular"] { --space: var(--spacing-regular); }
   &[data-spacing="tight"] { --space: var(--spacing-tight); }
   &[data-spacing="loose"] { --space: var(--spacing-loose); }
+  &[data-spacing="none"] { --space: 0; }
 
   width: 100%;
   display: grid;
