@@ -3,16 +3,16 @@ export const SmaragdDefaultConfig: SmaragdConfig = {
     styleDefaultTags: true
   },
   colors: {
-    primary: '#FF0000',
-    primaryHov: '#BB0000',
-    secondary: '#00FF00',
-    secondaryHov: '#00BB00',
-    header: '#000000',
-    major: '#000000',
-    regular: '#131313',
-    minor: '#454545',
-    sub: '#939393',
+    themePrimary: '#ff0000',
+    themePrimaryHov: '#ff000099',
+    themeSecondary: '#00ff00',
+    themeSecondaryHov: '#00ff0099',
     border: '#dddddd',
+    textHeader: '#000000',
+    textMajor: '#000000',
+    textRegular: '#131313',
+    textMinor: '#454545',
+    textSub: '#939393',
     backgroundLighter: '#ffffff',
     backgroundLight: '#fefefe',
     backgroundRegular: '#fdfdfd',
@@ -23,12 +23,14 @@ export const SmaragdDefaultConfig: SmaragdConfig = {
     regular: '15pt',
     tight: '5pt',
     loose: '30pt',
-    pageWidth: '600pt'
+    pageWidth: '600pt',
+    contentHeight: '30pt'
   },
   look: {
     borderRadiusRegular: '5pt',
     borderRadiusTight: '3pt',
-    borderRadiusLoose: '10pt'
+    borderRadiusLoose: '10pt',
+    borderWidth: '1px'
   },
   fonts: {
     header: '"SMARAGD-DEF Montserrat 900", "Roboto", sans-serif',
@@ -36,7 +38,8 @@ export const SmaragdDefaultConfig: SmaragdConfig = {
     regular: '"SMARAGD-DEF Montserrat 400", "Roboto", sans-serif',
     minor: '"SMARAGD-DEF Montserrat 400", "Roboto", sans-serif',
     sub: '"SMARAGD-DEF Montserrat 400", "Roboto", sans-serif'
-  }
+  },
+  themes: {}
 }
 
 //
@@ -46,7 +49,7 @@ type CssRelativeUnit = 'em' | 'ex' | 'ch' | 'rem' | 'vw' | 'vh' | 'vmin' | 'vmax
 type CssUnit = CssAbsoluteUnit | CssRelativeUnit
 type CssUnitWithValue = `${number}${CssUnit}`
 
-export type SmaragdConfig = {
+export type BaseSmaragdConfig = {
   /** General options on how smaragd should behave */
   opts?: {
     /** allows smaragd to override default html tags like <h1> or <span> */
@@ -54,26 +57,18 @@ export type SmaragdConfig = {
   }
   /** Theming options */
   colors?: {
-    /** theme color */
-    primary?: string
-    /** theme color, hover state */
-    primaryHov?: string
-    /** complementary color */
-    secondary?: string
-    /** complementary color, hover state */
-    secondaryHov?: string
-    /** text color for h1, h2 */
-    header?: string
-    /** text color for major text like h3 or emp */
-    major?: string
-    /** text color for regular text */
-    regular?: string
-    /** text color for minor text */
-    minor?: string
-    /** text color for subtext elements */
-    sub?: string
     /** text color for borders */
     border?: string
+    /** text color for h1, h2 */
+    textHeader?: string
+    /** text color for major text like h3 or emp */
+    textMajor?: string
+    /** text color for regular text */
+    textRegular?: string
+    /** text color for minor text */
+    textMinor?: string
+    /** text color for subtext elements */
+    textSub?: string
     /** lighter variant of the lighter background color */
     backgroundLighter?: string
     /** lighter variant of the background color */
@@ -84,19 +79,21 @@ export type SmaragdConfig = {
     backgroundDark?: string
     /** darker variant of the darker background color */
     backgroundDarker?: string
-  }
+  } & Record<`theme${string}`, string>
   /** Spacing options */
   spacing?: {
     regular?: CssUnitWithValue
     tight?: CssUnitWithValue
     loose?: CssUnitWithValue
     pageWidth?: CssUnitWithValue
+    contentHeight?: CssUnitWithValue
   }
   /** Look and feel options */
   look?: {
     borderRadiusRegular?: CssUnitWithValue
     borderRadiusTight?: CssUnitWithValue
     borderRadiusLoose?: CssUnitWithValue
+    borderWidth?: CssUnitWithValue
   }
   /** Font options */
   fonts?: {
@@ -111,6 +108,10 @@ export type SmaragdConfig = {
     /** fonts for subtext elements */
     sub?: string
   }
+}
+
+export type SmaragdConfig = BaseSmaragdConfig & {
+  themes?: Record<string, BaseSmaragdConfig>
 }
 
 //

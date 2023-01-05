@@ -4,6 +4,14 @@
     <p>This page provides an overview over all smaragd components.</p>
 
     <hr>
+    <select v-model="$colorMode.preference">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="sepia">Sepia</option>
+    </select>
+
+    <hr>
     <h2>Layout and Positioning</h2>
 
     <Layout name="flow" spacing="tight">
@@ -26,6 +34,25 @@
       ]" />
     </Layout>
 
+    <Layout name="flow" spacing="tight">
+      <h3>&lt;Box /&gt;</h3>
+      <p>A box to group and organize content</p>
+      <SmaragdDemoPropDisplay :props="[
+        { name: 'layout', desc: 'if you want to use a layout in this box, use this to not have to create another layout element', required: 'false', type: '[Layout name]' },
+        { name: 'spacing', desc: 'padding between box border and box content', required: 'false', type: [ 'regular', 'tight', 'loose', 'none' ] },
+        { name: 'layout-spacing', desc: 'spacing to pass to the nested layout component. defaults to \'spacing\' attribute', required: 'false', type: [ 'regular', 'tight', 'loose', 'none' ] }
+      ]" />
+      <Layout name="11" spacing="tight">
+        <Box layout="flow">
+          <h3>Demo box header</h3>
+          <p>Demo box content. This box has layout flow</p>
+        </Box>
+        <Box spacing="tight">
+          <p>Demo box without layout but tight spacing</p>
+        </Box>
+      </Layout>
+    </Layout>
+
     <hr>
     <h2>Buttons and Inputs</h2>
 
@@ -39,10 +66,21 @@
         { name: 'disabled', desc: 'set button to disabled', required: 'false', type: 'Boolean' },
         { name: '@click', desc: 'on click event handler', required: 'false', type: 'Function' },
       ]" />
+      <Button
+        text="Gamers"
+        color="primary"
+        @click="clicked()"
+      />
     </Layout>
 
   </SmaragdPage>
 </template>
+
+<script setup>
+function clicked() {
+  alert('clicked!')
+}
+</script>
 
 <style scoped lang="scss">
 // div {

@@ -50,7 +50,7 @@ const { props } = defineProps({
     span {
       font-family: var(--font-regular);
       font-size: 11pt;
-      color: #000000;
+      color: var(--color-regular);
     }
 
     &.header span {
