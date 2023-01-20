@@ -114,12 +114,10 @@ const style = computed(() => ({
     border-radius: var(--br-regular);
     outline: none;
     border: none;
+    text-decoration: none;
     transition: background-color .3s ease;
 
-    * {
-      text-decoration: none;
-      transition: color .1s ease;
-    }
+    * { transition: color .1s ease; }
 
     &[data-text=true] .visual {
       margin-right: var(--spacing-regular);
