@@ -64,6 +64,7 @@
         { name: 'type', desc: 'which style to display the button in', required: 'false', type: 'TODO' },
         { name: 'icon', desc: 'give the button an icon', required: 'false', type: 'String' },
         { name: 'disabled', desc: 'set button to disabled', required: 'false', type: 'Boolean' },
+        { name: 'href', desc: 'turn button into a link', required: 'false', type: 'String' },
         { name: '@click', desc: 'on click event handler', required: 'false', type: 'Function' },
       ]" />
       <Button

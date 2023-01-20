@@ -1,9 +1,10 @@
 <template>
   <div
     smaragd-button
-    :data-disabled="disabled"
+    :data-disabled="!!disabled"
   >
     <button
+      v-if="!href"
       :data-color="color"
       :data-lite="lite"
       :data-text="!!text"
@@ -22,6 +23,24 @@
         <span v-if="text" v-text="text" />
       </div>
     </button>
+    <NuxtLink
+      v-else
+      :data-color="color"
+      :data-lite="lite"
+      :data-text="!!text"
+      :data-icon="!!icon"
+      :style="style"
+      tabindex="0"
+    >
+      <div class="inner">
+        <Icon
+          v-if="icon"
+          class="visual"
+          :name="icon"
+        />
+        <span v-if="text" v-text="text" />
+      </div>
+    </NuxtLink>
   </div>
 </template>
 
@@ -47,6 +66,10 @@ const { text, color, lite, img, icon, imgcrop, disabled, overflow } = defineProp
     type: Boolean,
     default: false
   },
+  href: {
+    type: String,
+    required: false
+  },
   overflow: {
     /** { text: string, href?: string, click?: func } */
     type: Array,
@@ -60,7 +83,10 @@ const style = computed(() => ({
     : `var(--theme-${color})`,
   '--color-hov': (color.startsWith('#') || color.includes('('))
     ? color
-    : `var(--theme-${color}-hov)`
+    : `var(--theme-${color}-hov)`,
+  '--color-contrast': (color.startsWith('#') || color.includes('('))
+    ? 'var(--color-major)'
+    : `var(--theme-${color}-contrast)`
 }))
 </script>
 
@@ -75,14 +101,14 @@ const style = computed(() => ({
     opacity: .5;
   }
 
-  button {
+  button, a {
     // @include a11y-hover;
 
     box-sizing: border-box;
     flex-grow: 1;
     height: var(--spacing-content-height);
     padding: 0 var(--spacing-regular);
-    color: #ffffff;
+    color: var(--color-contrast);
     cursor: pointer;
     border-radius: var(--br-regular);
     outline: none;
