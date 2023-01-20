@@ -116,7 +116,10 @@ const style = computed(() => ({
     border: none;
     transition: background-color .3s ease;
 
-    * { transition: color .1s ease; }
+    * {
+      text-decoration: none;
+      transition: color .1s ease;
+    }
 
     &[data-text=true] .visual {
       margin-right: var(--spacing-regular);
