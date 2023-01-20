@@ -30,6 +30,7 @@
       :data-text="!!text"
       :data-icon="!!icon"
       :style="style"
+      :to="href"
       tabindex="0"
     >
       <div class="inner">
