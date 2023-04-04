@@ -91,10 +91,10 @@ defineProps({
     }
   }
 
-  &[data-name="111"] { grid-template-columns: 1fr 1fr 1fr 1fr; }
-  &[data-name="1111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
-  &[data-name="11111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; }
-  &[data-name="111111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; }
+  &[data-name="1111"] { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  &[data-name="11111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  &[data-name="111111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; }
+  &[data-name="1111111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; }
 
   // @media screen and (max-width: $res-tablet-width) {
   //   &[data-name="2static"] {
