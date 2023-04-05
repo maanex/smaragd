@@ -1,28 +1,37 @@
 <template>
   <div
     smaragd-layout
-    :data-name="name"
-    :data-spacing="spacing"
+    :style="style"
+    :data-name="name ?? 'flow'"
+    :data-spacing="spacing ?? 'regular'"
   >
     <slot />
   </div>
 </template>
 
-<script setup>
-defineProps({
-  name: {
-    type: String,
-    default: 'flow'
-  },
-  /**
-   * Allowed options are:
-   * * regular
-   * * tight
-   * * loose
-   */
-  spacing: {
-    type: String,
-    default: 'regular'
+<script setup lang=ts>
+type DynamicLayoutLetter = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'a'
+
+const { name } = defineProps<{
+  name: 'padded'
+    | 'inline' | 'center'
+    | 'left' | 'right'
+    | 'dynamic' | 'flow'
+    | `${DynamicLayoutLetter}`
+    | `${DynamicLayoutLetter}${DynamicLayoutLetter}`
+    | `${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}`
+    | `${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}`
+  spacing: 'regular' | 'tight' | 'loose'
+}>()
+
+const style = computed(() => {
+  if (!/^[1-9a]{2,7}$/.test(name)) return {}
+
+  return {
+    'grid-template-columns': name
+      .split('')
+      .map(n => (n === 'a') ? 'auto' : `${n}fr`)
+      .join(' ')
   }
 })
 </script>
@@ -77,24 +86,6 @@ defineProps({
     display: grid;
     grid-template-columns: 1fr;
   }
-
-  @for $i from 1 through 4 {
-    &[data-name="#{$i}a"] { grid-template-columns: #{$i*1fr} auto; }
-
-    @for $j from 1 through 4 {
-      &[data-name="#{$i}#{$j}"] { grid-template-columns: #{$i*1fr} #{$j*1fr}; }
-      &[data-name="#{$i}#{$j}a"] { grid-template-columns: #{$i*1fr} #{$j*1fr} auto; }
-
-      @for $k from 1 through 4 {
-        &[data-name="#{$i}#{$j}#{$k}"] { grid-template-columns: #{$i*1fr} #{$j*1fr} #{$k*1fr}; }
-      }
-    }
-  }
-
-  &[data-name="1111"] { grid-template-columns: 1fr 1fr 1fr 1fr; }
-  &[data-name="11111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
-  &[data-name="111111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; }
-  &[data-name="1111111"] { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; }
 
   // @media screen and (max-width: $res-tablet-width) {
   //   &[data-name="2static"] {
