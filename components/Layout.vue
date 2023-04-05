@@ -13,7 +13,7 @@
 type DynamicLayoutLetter = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'a'
 
 const { name } = defineProps<{
-  name: 'padded'
+  name?: 'padded'
     | 'inline' | 'center'
     | 'left' | 'right'
     | 'dynamic' | 'flow'
@@ -21,7 +21,7 @@ const { name } = defineProps<{
     | `${DynamicLayoutLetter}${DynamicLayoutLetter}`
     | `${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}`
     | `${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}${DynamicLayoutLetter}`
-  spacing: 'regular' | 'tight' | 'loose'
+  spacing?: 'regular' | 'tight' | 'loose'
 }>()
 
 const style = computed(() => {
