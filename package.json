@@ -1,7 +1,7 @@
 {
   "name": "smaragd",
   "type": "module",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "./nuxt.config.ts",
   "author": "Andreas May (maanex.me)",
   "scripts": {
