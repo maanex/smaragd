@@ -1,7 +1,7 @@
 {
   "name": "smaragd",
   "type": "module",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "./nuxt.config.ts",
   "author": "Andreas May (maanex.me)",
   "scripts": {
@@ -11,12 +11,12 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "nuxt": "^3.7.4"
+    "nuxt": "^3.16.1"
   },
   "dependencies": {
-    "@nuxtjs/color-mode": "^3.2.0",
-    "defu": "^6.1.1",
-    "sass": "^1.57.1",
-    "sass-loader": "^13.2.0"
+    "@nuxtjs/color-mode": "^3.5.2",
+    "defu": "^6.1.4",
+    "sass": "^1.86.0",
+    "sass-loader": "^13.3.3"
   }
 }
